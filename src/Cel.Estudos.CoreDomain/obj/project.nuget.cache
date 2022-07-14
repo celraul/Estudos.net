@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "aG3HQktqfZUzoxlzMMc0wXyfnzgECKVY2GIjJuhDvvk8wFqk8zcAVD+DQ9DO+dNmxYfjQ9ieaUpypFVdUayAXw==",
+  "success": true,
+  "projectFilePath": "C:\\Projetos\\celraul\\Estudos\\Cel.Estudos\\src\\Cel.Estudos.CoreDomain\\Cel.Estudos.CoreDomain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cel_r\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
+    "C:\\Users\\cel_r\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\cel_r\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\cel_r\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\cel_r\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\cel_r\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,12 @@
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\bin\Debug\net6.0\Cel.Estudos.Infra.DataRead.deps.json
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\bin\Debug\net6.0\Cel.Estudos.Infra.DataRead.dll
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\bin\Debug\net6.0\Cel.Estudos.Infra.DataRead.pdb
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\Cel.Estudos.Infra.DataRead.csproj.AssemblyReference.cache
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\Cel.Estudos.Infra.DataRead.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\Cel.Estudos.Infra.DataRead.AssemblyInfoInputs.cache
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\Cel.Estudos.Infra.DataRead.AssemblyInfo.cs
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\Cel.Estudos.Infra.DataRead.csproj.CoreCompileInputs.cache
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\Cel.Estudos.Infra.DataRead.dll
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\refint\Cel.Estudos.Infra.DataRead.dll
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\Cel.Estudos.Infra.DataRead.pdb
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Infra.DataRead\obj\Debug\net6.0\ref\Cel.Estudos.Infra.DataRead.dll

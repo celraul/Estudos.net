@@ -1,0 +1,12 @@
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\bin\Debug\net6.0\Cel.Estudos.Domain.deps.json
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\bin\Debug\net6.0\Cel.Estudos.Domain.dll
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\bin\Debug\net6.0\Cel.Estudos.Domain.pdb
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\Cel.Estudos.Domain.csproj.AssemblyReference.cache
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\Cel.Estudos.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\Cel.Estudos.Domain.AssemblyInfoInputs.cache
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\Cel.Estudos.Domain.AssemblyInfo.cs
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\Cel.Estudos.Domain.csproj.CoreCompileInputs.cache
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\Cel.Estudos.Domain.dll
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\refint\Cel.Estudos.Domain.dll
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\Cel.Estudos.Domain.pdb
+C:\Projetos\celraul\Estudos\Cel.Estudos\src\Cel.Estudos.Domain\obj\Debug\net6.0\ref\Cel.Estudos.Domain.dll
