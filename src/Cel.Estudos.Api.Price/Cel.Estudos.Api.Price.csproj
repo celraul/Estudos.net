@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cel.Estudos.Application\Cel.Estudos.Application.csproj" />
+    <ProjectReference Include="..\Cel.Estudos.Infra.DataWrite\Cel.Estudos.Infra.DataWrite.csproj" />
   </ItemGroup>
 
   <ItemGroup>

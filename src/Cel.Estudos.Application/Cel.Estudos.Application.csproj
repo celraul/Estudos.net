@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cel.Estudos.CoreDomain\Cel.Estudos.CoreDomain.csproj" />
     <ProjectReference Include="..\Cel.Estudos.Domain\Cel.Estudos.Domain.csproj" />
+    <ProjectReference Include="..\Cel.Estudos.Infra.Data\Cel.Estudos.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>
