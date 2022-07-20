@@ -17,7 +17,7 @@ namespace Cel.Estudos.Application.Ioc
 
         public static IServiceCollection AddPriceDependencyInjection(this IServiceCollection services)
         {
-            services.AddTransient<IValidator<CreatePriceCommand>, CreatePriceCommandValidators>();
+            services.AddTransient<IValidator<CreateProductPriceCommand>, CreateProductPriceCommandValidators>();
 
             return services;
         }

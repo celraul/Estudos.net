@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  price-api:
+    build: 
+      context: .
+      dockerfile: dockerfile-price
+    container_name: price-api
+    networks:
+      - price-networks
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerComposeDev
+    ports:
+      - "5010:80"
+    expose:
+      - "5010"
+    depends_on:
+      - sql-server
+
+  discount-api:
+    build: 
+      context: .
+      dockerfile: dockerfile-discount
+    container_name: discount-api
+    networks:
+      - price-networks
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerComposeDev
+    ports:
+      - "5011:80"
+    expose:
+      - "5011"
+    depends_on:
+      - sql-server
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql-server
+    ports:
+      - 1433:1433
+    volumes:
+      - ~/apps/mssql/data:/var/lib/mssqlql/data
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Senh@100Insegura
+
+networks: 
+  price-networks:
+    driver: bridge

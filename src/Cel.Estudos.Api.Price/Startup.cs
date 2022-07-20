@@ -21,7 +21,7 @@ namespace Cel.Estudos.Api.Price
         {
             services.AddControllers();
 
-            services.AddMediatR(typeof(CreatePriceCommandHandler).Assembly);
+            services.AddMediatR(typeof(CreateProductPriceCommandHandler).Assembly);
 
             services.AddInfraDataDependencyInjection()
                     .AddInfraDataWriteDependencyInjection()

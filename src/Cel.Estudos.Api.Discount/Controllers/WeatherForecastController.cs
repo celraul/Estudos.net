@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cel.Estudos.Api.Preco.Controllers
+namespace Cel.Estudos.Api.Discount.Controllers
 {
     [ApiController]
     [Route("[controller]")]

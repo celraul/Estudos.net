@@ -2,7 +2,7 @@
 
 namespace Cel.Estudos.Application.Price.Commands
 {
-    public class CreatePriceCommand : Command<bool>
+    public class CreateProductPriceCommand : Command<bool>
     {
         public int IdProduct { get; set; }
         public decimal? Price { get; set; }

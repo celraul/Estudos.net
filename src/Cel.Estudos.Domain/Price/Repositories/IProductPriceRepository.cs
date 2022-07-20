@@ -2,8 +2,8 @@
 
 namespace Cel.Estudos.Domain.Price.Repositories
 {
-    public interface IPriceRepository
+    public interface IProductPriceRepository
     {
-        Task Save(Product product);
+        Task Save(ProductPrice product);
     }
 }

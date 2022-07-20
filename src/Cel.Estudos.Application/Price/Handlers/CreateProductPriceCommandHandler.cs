@@ -8,16 +8,16 @@ using MediatR;
 
 namespace Cel.Estudos.Application.Price.Handlers
 {
-    public class CreatePriceCommandHandler : IRequestHandler<CreatePriceCommand, bool>
+    public class CreateProductPriceCommandHandler : IRequestHandler<CreateProductPriceCommand, bool>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IValidator<CreatePriceCommand> _validator;
+        private readonly IValidator<CreateProductPriceCommand> _validator;
         private readonly INotificationContext _notificationContext;
-        private readonly IPriceRepository _priceRepository;
+        private readonly IProductPriceRepository _priceRepository;
 
-        public CreatePriceCommandHandler(IUnitOfWork unitOfWork,
-                                         IPriceRepository priceRepository,
-                                         IValidator<CreatePriceCommand> validator,
+        public CreateProductPriceCommandHandler(IUnitOfWork unitOfWork,
+                                         IProductPriceRepository priceRepository,
+                                         IValidator<CreateProductPriceCommand> validator,
                                          INotificationContext notificationContext)
         {
             _unitOfWork = unitOfWork;
@@ -26,7 +26,7 @@ namespace Cel.Estudos.Application.Price.Handlers
             _notificationContext = notificationContext;
         }
 
-        public async Task<bool> Handle(CreatePriceCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateProductPriceCommand request, CancellationToken cancellationToken)
         {
             var validator = await _validator.ValidateAsync(request, cancellationToken).ConfigureAwait(false);
             if (!validator.IsValid)
@@ -36,7 +36,12 @@ namespace Cel.Estudos.Application.Price.Handlers
 
             // usar factory
 
-            await _priceRepository.Save(new Product());
+            await _priceRepository.Save(new ProductPrice
+            {
+                Price = request.Price.Value,
+                PriceCost = request.PriceCost.Value,
+                IdProduct = request.IdProduct
+            });
 
             _unitOfWork.Commit();
 

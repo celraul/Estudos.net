@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Cel.Estudos.Application.Price.Validators
 {
-    public class CreatePriceCommandValidators : AbstractValidator<CreatePriceCommand>
+    public class CreateProductPriceCommandValidators : AbstractValidator<CreateProductPriceCommand>
     {
-        public CreatePriceCommandValidators()
+        public CreateProductPriceCommandValidators()
         {
             RuleFor(x => x.Price).NotEmpty()
                                  .GreaterThan(decimal.MinValue)

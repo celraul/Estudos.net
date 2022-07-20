@@ -8,7 +8,7 @@ namespace Cel.Estudos.Infra.DataWrite.Ioc
     {
         public static IServiceCollection AddInfraDataWriteDependencyInjection(this IServiceCollection services)
         {
-            services.AddTransient<IPriceRepository, PriceRepository>();
+            services.AddTransient<IProductPriceRepository, ProductPriceRepository>();
 
             return services;
         }

@@ -10,4 +10,8 @@
     <Folder Include="Price\Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Cel.Estudos.CoreDomain\Cel.Estudos.CoreDomain.csproj" />
+  </ItemGroup>
+
 </Project>

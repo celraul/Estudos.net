@@ -1,4 +1,4 @@
-namespace Cel.Estudos.Api.Preco
+namespace Cel.Estudos.Api.Discount
 {
     public class WeatherForecast
     {

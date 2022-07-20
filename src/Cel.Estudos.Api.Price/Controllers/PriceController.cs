@@ -17,11 +17,8 @@ namespace Cel.Estudos.Api.Price.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(CreatePriceCommand command)
-        {
-            var response = _mediator.Send(command);
+        public async Task<ActionResult> Post(CreateProductPriceCommand command) =>
+             CreateOkResponseOrBadRequestIfHasNotifications(await _mediator.Send(command));
 
-            return CreateOkResponseOrBadRequestIfHasNotifications(response);
-        }
     }
 }

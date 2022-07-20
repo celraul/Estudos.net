@@ -15,8 +15,11 @@ namespace Cel.Estudos.Infra.Data.Repositories
 
         public async Task<int> ExecuteAsync(string sql, object parameters, CommandType? commandType)
         {
-            return await RunCommand(() => _session.Connection.ExecuteAsync(sql, parameters, commandType: commandType), _session.Connection)
-                        .ConfigureAwait(false);
+            return await RunCommand(() => _session.Connection.ExecuteAsync(sql, 
+                                                                           parameters, 
+                                                                           commandType: commandType, 
+                                                                           transaction: _session.Transaction), _session.Connection)
+                                                             .ConfigureAwait(false);
         }
 
         private async Task<TResult> RunCommand<TResult>(Func<Task<TResult>> action, IDbConnection connection)
@@ -27,12 +30,9 @@ namespace Cel.Estudos.Infra.Data.Repositories
             }
             catch (Exception ex)
             {
-                Exception exception = new Exception("Error to executes sql command", ex);
-                throw exception;
-            }
-            finally
-            {
                 Close(connection);
+                Exception exception = new Exception("Error to execute sql command", ex);
+                throw exception;
             }
         }
 
