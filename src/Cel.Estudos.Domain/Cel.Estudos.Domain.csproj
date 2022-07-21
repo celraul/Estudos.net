@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Price\Interfaces\" />
+    <Folder Include="Price\Specifications\Common\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,7 +15,6 @@ namespace Cel.Estudos.Infra.Data.Data
             _id = Guid.NewGuid();
 
             Connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
-            Connection.Open();
         }
 
         public void Dispose() => Connection?.Dispose();

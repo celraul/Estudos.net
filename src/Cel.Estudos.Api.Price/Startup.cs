@@ -1,6 +1,5 @@
 ﻿using Cel.Estudos.Application.Ioc;
 using Cel.Estudos.Application.Price.Handlers;
-using Cel.Estudos.CoreDomain.BehaviorMediatR;
 using Cel.Estudos.Infra.DataWrite.Ioc;
 using Cel.Estudos.CoreDomain.IoC;
 using Cel.Estudos.Infra.Data.Ioc;
@@ -27,8 +26,6 @@ namespace Cel.Estudos.Api.Price
                     .AddInfraDataWriteDependencyInjection()
                     .AddApplicationDependencyInjection()
                     .AddDomainDependencyInjection();
-
-            //services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationRequestBehavior<,>));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();

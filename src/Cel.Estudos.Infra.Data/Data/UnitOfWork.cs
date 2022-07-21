@@ -1,4 +1,6 @@
-﻿namespace Cel.Estudos.Infra.Data.Data
+﻿using System.Data;
+
+namespace Cel.Estudos.Infra.Data.Data
 {
     public sealed class UnitOfWork : IUnitOfWork
     {
@@ -11,6 +13,9 @@
 
         public void BeginTransaction()
         {
+            if(_session.Connection.State == ConnectionState.Closed)
+                _session.Connection.Open();
+
             _session.Transaction = _session.Connection.BeginTransaction();
         }
 
