@@ -37,19 +37,17 @@ namespace Cel.Estudos.Application.Price.Handlers
 
         public async Task<bool> Handle(CreateProductPriceCommand request, CancellationToken cancellationToken)
         {
-            //var validator = await _validator.ValidateAsync(request, cancellationToken).ConfigureAwait(false);
-            //if (!validator.IsValid)
-            //    return false;
+            var validator = await _validator.ValidateAsync(request, cancellationToken).ConfigureAwait(false);
+            if (!validator.IsValid)
+                return false;
 
-            // TODO usar factory
-            var productPrice = new ProductPrice
-            {
-                Price = request.Price.Value,
-                PriceCost = request.PriceCost.Value,
-                IdProduct = request.IdProduct
-            };
-            // adicionando eventos
-            productPrice.Events.Add(new ProductPriceCreatedEvent(productPrice.IdProduct, productPrice.Price, request.CorrelationId));
+            var productPrice = new ProductPrice(request.IdProduct,
+                                                request.Price.Value,
+                                                request.PriceCost.Value);
+
+            productPrice.AddEvents(new ProductPriceCreatedEvent(productPrice.IdProduct,
+                                                                productPrice.Price, 
+                                                                request.CorrelationId));
 
             _productPriceSpecificator.Specify(productPrice, new CreateProductPriceSpecification());
             if (!_productPriceSpecificator.Passed)

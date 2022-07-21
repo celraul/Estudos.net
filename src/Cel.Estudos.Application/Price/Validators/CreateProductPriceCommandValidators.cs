@@ -8,9 +8,9 @@ namespace Cel.Estudos.Application.Price.Validators
         public CreateProductPriceCommandValidators()
         {
             RuleFor(x => x.Price).NotEmpty()
-                                 .GreaterThan(decimal.MinValue)
+                                 .GreaterThan(0)
                                  .WithMessage("Error 01");
-            RuleFor(x => x.IdProduct).GreaterThan(int.MinValue).WithMessage("Error 02");
+            RuleFor(x => x.IdProduct).GreaterThan(0).WithMessage("Error 02");
         }
     }
 }

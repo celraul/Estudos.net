@@ -4,6 +4,7 @@ using Cel.Estudos.Infra.DataWrite.Ioc;
 using Cel.Estudos.CoreDomain.IoC;
 using Cel.Estudos.Infra.Data.Ioc;
 using MediatR;
+using Cel.Estudos.Api.Price.Middlewares;
 
 namespace Cel.Estudos.Api.Price
 {
@@ -30,7 +31,6 @@ namespace Cel.Estudos.Api.Price
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment environment)
@@ -41,6 +41,8 @@ namespace Cel.Estudos.Api.Price
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 

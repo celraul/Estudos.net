@@ -4,6 +4,6 @@ namespace Cel.Estudos.CoreDomain
 {
     public interface IEventGenerator
     {
-        List<Event> Events { get; set; }
+        List<Event> Events { get; }
     }
 }
