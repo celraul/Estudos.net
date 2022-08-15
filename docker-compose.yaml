@@ -32,28 +32,78 @@ services:
     depends_on:
       - sql-server
 
-  sql-server:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: sql-server
-    ports:
-      - 1433:1433
-    volumes:
-      - ~/apps/mssql/data:/var/lib/mssqlql/data
+  # sql-server:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   container_name: sql-server
+  #   ports:
+  #     - 1433:1433
+  #   volumes:
+  #     - ~/apps/mssql/data:/var/lib/mssqlql/data
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=Senh@100Insegura
+
+  zookeeper:
+    image: "confluentinc/cp-zookeeper:${CONFLUENT_PLATFORM_VERSION}"
+    container_name: zookeeper
+    networks: 
+      - admin-preco
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Senh@100Insegura
-      
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    container_name: 'rabbitmq'
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes: 
+      - ./zoo/data:/var/lib/zookeeper/data
+      - ./zoo/log:/var/lib/zookeeper/log
+
+  kafka:
+    image: "confluentinc/cp-kafka:${CONFLUENT_PLATFORM_VERSION}"
+    container_name: kafka
+    networks: 
+      - admin-preco
+    depends_on:
+      - zookeeper
     ports:
-        - 5672:5672
-        - 15672:15672
-    volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
-    networks:
-        - price-networks
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+    volumes: 
+      - ./kafka/data:/var/lib/kafka/data
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    container_name: kafdrop
+    networks: 
+      - admin-preco
+    depends_on:
+      - kafka
+    ports:
+      - 19000:9000
+    environment:
+      KAFKA_BROKERCONNECT: kafka:29092
+      
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   container_name: 'rabbitmq'
+  #   ports:
+  #       - 5672:5672
+  #       - 15672:15672
+  #   volumes:
+  #       - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+  #       - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+  #   networks:
+  #       - price-networks
+  #   environment:
+  #    - RABBITMQ_ERLANG_COOKIE=This_is_my_secret_phrase
+  #    - RABBITMQ_DEFAULT_USER=mqadmin
+  #    - RABBITMQ_DEFAULT_PASS=Admin123XX_
+  #    - CLUSTERED=true
+     
 networks: 
   price-networks:
     driver: bridge

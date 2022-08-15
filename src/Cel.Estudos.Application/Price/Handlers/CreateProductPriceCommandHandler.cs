@@ -46,7 +46,7 @@ namespace Cel.Estudos.Application.Price.Handlers
                                                 request.PriceCost.Value);
 
             productPrice.AddEvents(new ProductPriceCreatedEvent(productPrice.IdProduct,
-                                                                productPrice.Price, 
+                                                                productPrice.Price,
                                                                 request.CorrelationId));
 
             _productPriceSpecificator.Specify(productPrice, new CreateProductPriceSpecification());
