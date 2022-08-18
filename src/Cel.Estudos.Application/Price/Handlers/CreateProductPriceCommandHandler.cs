@@ -1,4 +1,5 @@
-﻿using Cel.Estudos.Application.Price.Commands;
+﻿using BenchmarkDotNet.Attributes;
+using Cel.Estudos.Application.Price.Commands;
 using Cel.Estudos.Application.Price.Events;
 using Cel.Estudos.CoreDomain.Notification;
 using Cel.Estudos.CoreDomain.Specification;
