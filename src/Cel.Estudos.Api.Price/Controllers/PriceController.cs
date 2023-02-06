@@ -1,4 +1,5 @@
-﻿using Cel.Estudos.Application.Price.Commands;
+﻿using Cel.Estudos.Api.Price.ActionFilters;
+using Cel.Estudos.Application.Price.Commands;
 using Cel.Estudos.CoreDomain.Notification;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace Cel.Estudos.Api.Price.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(CorrelationIdActionFilter))]
         public async Task<ActionResult> Post(CreateProductPriceCommand command) =>
              CreateOkResponseOrBadRequestIfHasNotifications(await _mediator.Send(command));
 

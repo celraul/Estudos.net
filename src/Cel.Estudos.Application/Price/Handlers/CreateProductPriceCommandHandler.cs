@@ -1,5 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
-using Cel.Estudos.Application.Price.Commands;
+﻿using Cel.Estudos.Application.Price.Commands;
 using Cel.Estudos.Application.Price.Events;
 using Cel.Estudos.CoreDomain.Notification;
 using Cel.Estudos.CoreDomain.Specification;
@@ -10,60 +9,59 @@ using Cel.Estudos.Infra.Data.Data;
 using FluentValidation;
 using MediatR;
 
-namespace Cel.Estudos.Application.Price.Handlers
+namespace Cel.Estudos.Application.Price.Handlers;
+
+public class CreateProductPriceCommandHandler : IRequestHandler<CreateProductPriceCommand, bool>
 {
-    public class CreateProductPriceCommandHandler : IRequestHandler<CreateProductPriceCommand, bool>
+    private readonly INotificationContext _notificationContext;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IValidator<CreateProductPriceCommand> _validator;
+    private readonly ISpecificator<ProductPrice> _productPriceSpecificator;
+    private readonly IProductPriceRepository _priceRepository;
+    private readonly IMediator _mediator;
+
+    public CreateProductPriceCommandHandler(INotificationContext notificationContext,
+                                            IUnitOfWork unitOfWork,
+                                            IValidator<CreateProductPriceCommand> validator,
+                                            ISpecificator<ProductPrice> productPriceSpecificator,
+                                            IProductPriceRepository priceRepository,
+                                            IMediator mediator)
     {
-        private readonly INotificationContext _notificationContext;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IValidator<CreateProductPriceCommand> _validator;
-        private readonly ISpecificator<ProductPrice> _productPriceSpecificator;
-        private readonly IProductPriceRepository _priceRepository;
-        private readonly IMediator _mediator;
+        _notificationContext = notificationContext;
+        _unitOfWork = unitOfWork;
+        _validator = validator;
+        _productPriceSpecificator = productPriceSpecificator;
+        _priceRepository = priceRepository;
+        _mediator = mediator;
+    }
 
-        public CreateProductPriceCommandHandler(INotificationContext notificationContext,
-                                                IUnitOfWork unitOfWork,
-                                                IValidator<CreateProductPriceCommand> validator,
-                                                ISpecificator<ProductPrice> productPriceSpecificator,
-                                                IProductPriceRepository priceRepository,
-                                                IMediator mediator)
-        {
-            _notificationContext = notificationContext;
-            _unitOfWork = unitOfWork;
-            _validator = validator;
-            _productPriceSpecificator = productPriceSpecificator;
-            _priceRepository = priceRepository;
-            _mediator = mediator;
-        }
+    public async Task<bool> Handle(CreateProductPriceCommand request, CancellationToken cancellationToken)
+    {
+        var validator = await _validator.ValidateAsync(request, cancellationToken).ConfigureAwait(false);
+        if (!validator.IsValid)
+            return false;
 
-        public async Task<bool> Handle(CreateProductPriceCommand request, CancellationToken cancellationToken)
-        {
-            var validator = await _validator.ValidateAsync(request, cancellationToken).ConfigureAwait(false);
-            if (!validator.IsValid)
-                return false;
+        var productPrice = new ProductPrice(request.IdProduct,
+                                            request.Price,
+                                            request.PriceCost);
 
-            var productPrice = new ProductPrice(request.IdProduct,
-                                                request.Price.Value,
-                                                request.PriceCost.Value);
+        _productPriceSpecificator.Specify(productPrice, new CreateProductPriceSpecification());
+        if (!_productPriceSpecificator.Passed)
+            return false;
 
-            productPrice.AddEvents(new ProductPriceCreatedEvent(productPrice.IdProduct,
-                                                                productPrice.Price,
-                                                                request.CorrelationId));
+        productPrice.AddEvents(new ProductPriceCreatedEvent(productPrice.IdProduct,
+                                                    productPrice.Price,
+                                                    request.CorrelationId));
 
-            _productPriceSpecificator.Specify(productPrice, new CreateProductPriceSpecification());
-            if (!_productPriceSpecificator.Passed)
-                return false;
+        _unitOfWork.BeginTransaction();
 
-            _unitOfWork.BeginTransaction();
+        await _priceRepository.Save(productPrice);
 
-            await _priceRepository.Save(productPrice);
+        _unitOfWork.Commit();
 
-            _unitOfWork.Commit();
+        foreach (var productPriceEvents in productPrice.Events)
+            await _mediator.Publish(productPriceEvents);
 
-            foreach (var productPriceEvents in productPrice.Events)
-                await _mediator.Publish(productPriceEvents);
-
-            return true;
-        }
+        return true;
     }
 }

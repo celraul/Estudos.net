@@ -1,4 +1,4 @@
-﻿using Cel.Estudos.CoreDomain.Notification;
+﻿using Cel.Estudos.Lib;
 using System.Net.Mime;
 using System.Text.Json;
 
@@ -7,6 +7,9 @@ namespace Cel.Estudos.Api.Price.Middlewares
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
+
+        private const string DefaultMessageError = "Unknown error.";
+        private const string SqlDefaultMessageError = "Error on execute Db command.";
 
         public ExceptionMiddleware(RequestDelegate next)
         {
@@ -19,19 +22,24 @@ namespace Cel.Estudos.Api.Price.Middlewares
             {
                 await _next(httpContext);
             }
+            catch (SqlException ex)
+            {
+                await HandleExceptionAsync(httpContext, ex, SqlDefaultMessageError);
+            }
             catch (Exception ex)
             {
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception, string message = DefaultMessageError)
         {
-            int code = StatusCodes.Status400BadRequest;
+            int code = StatusCodes.Status500InternalServerError;
 
             var response = new
             {
-                Error = $"Ocorreu um erro: {exception.Message}",
+                Error = message,
+                ErrorDetails = exception.Message,
                 ErrorCode = code
             };
 

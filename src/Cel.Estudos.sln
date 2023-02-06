@@ -37,9 +37,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cel.Estudos.Infra.MessageBr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cel.Estudos.Kafka", "Cel.Estudos.Kafka\Cel.Estudos.Kafka.csproj", "{76018557-1553-4A11-A05C-193B184DA437}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cel.Estudos.Benchmark", "Cel.Estudos.Benchmark\Cel.Estudos.Benchmark.csproj", "{82A5818B-731C-4003-BB2D-254A6963FC43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cel.Estudos.Benchmark", "Cel.Estudos.Benchmark\Cel.Estudos.Benchmark.csproj", "{82A5818B-731C-4003-BB2D-254A6963FC43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cel.Estudos.UnitTest", "Cel.Estudos.UnitTest\Cel.Estudos.UnitTest.csproj", "{480C3C0B-A74D-4262-8D82-7F6F2E78A2B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cel.Estudos.UnitTest", "Cel.Estudos.UnitTest\Cel.Estudos.UnitTest.csproj", "{480C3C0B-A74D-4262-8D82-7F6F2E78A2B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.3 - Lib", "04.3 - Lib", "{6AA24A40-91F0-4685-A4EE-841899253D56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cel.Estudos.Lib", "Cel.Estudos.Lib\Cel.Estudos.Lib.csproj", "{B784838A-3D63-41D7-9E49-57F109CE41B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +99,10 @@ Global
 		{480C3C0B-A74D-4262-8D82-7F6F2E78A2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{480C3C0B-A74D-4262-8D82-7F6F2E78A2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{480C3C0B-A74D-4262-8D82-7F6F2E78A2B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B784838A-3D63-41D7-9E49-57F109CE41B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B784838A-3D63-41D7-9E49-57F109CE41B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B784838A-3D63-41D7-9E49-57F109CE41B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B784838A-3D63-41D7-9E49-57F109CE41B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +122,8 @@ Global
 		{76018557-1553-4A11-A05C-193B184DA437} = {6FC1831E-CEA9-44F0-9DDD-7008F240FFB7}
 		{82A5818B-731C-4003-BB2D-254A6963FC43} = {2FEB501F-CA9F-416A-88A7-69904CC12915}
 		{480C3C0B-A74D-4262-8D82-7F6F2E78A2B9} = {2FEB501F-CA9F-416A-88A7-69904CC12915}
+		{6AA24A40-91F0-4685-A4EE-841899253D56} = {0C223DAB-A066-41CC-9126-EE2606F37761}
+		{B784838A-3D63-41D7-9E49-57F109CE41B7} = {6AA24A40-91F0-4685-A4EE-841899253D56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89A5E076-E409-47AE-A046-0240622525BD}

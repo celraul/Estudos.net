@@ -1,5 +1,7 @@
-﻿using Cel.Estudos.Application.Price.Commands;
+﻿using Cel.Estudos.Application.Core.Services;
+using Cel.Estudos.Application.Price.Commands;
 using Cel.Estudos.Application.Price.Validators;
+using Cel.Estudos.CoreDomain.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +11,8 @@ namespace Cel.Estudos.Application.Ioc
     {
         public static IServiceCollection AddApplicationDependencyInjection(this IServiceCollection services)
         {
+            services.AddScoped<ICorrelationIdService, CorrelationIdService>();
+
             services.AddPriceDependencyInjection();
             services.AddDiscountDependencyInjection();
 

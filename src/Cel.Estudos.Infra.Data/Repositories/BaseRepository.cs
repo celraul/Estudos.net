@@ -1,6 +1,7 @@
 ﻿using Cel.Estudos.Infra.Data.Data;
 using System.Data;
 using Dapper;
+using Cel.Estudos.Lib;
 
 namespace Cel.Estudos.Infra.Data.Repositories
 {
@@ -13,11 +14,11 @@ namespace Cel.Estudos.Infra.Data.Repositories
             _session = session;
         }
 
-        public async Task<int> ExecuteAsync(string sql, object parameters, CommandType? commandType)
+        protected async Task<int> ExecuteAsync(string sql, object parameters, CommandType? commandType)
         {
-            return await RunCommand(() => _session.Connection.ExecuteAsync(sql, 
-                                                                           parameters, 
-                                                                           commandType: commandType, 
+            return await RunCommand(() => _session.Connection.ExecuteAsync(sql,
+                                                                           parameters,
+                                                                           commandType: commandType,
                                                                            transaction: _session.Transaction), _session.Connection)
                                                              .ConfigureAwait(false);
         }
@@ -31,7 +32,7 @@ namespace Cel.Estudos.Infra.Data.Repositories
             catch (Exception ex)
             {
                 Close(connection);
-                Exception exception = new Exception("Error to execute sql command", ex);
+                SqlException exception = new SqlException($"Error to execute sql command {ex.Message}", ex);
                 throw exception;
             }
         }
